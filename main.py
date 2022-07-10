@@ -59,26 +59,5 @@ def email_delete():
     return 'Delete Complete'
 
 
-@app.route('/phones/update/')
-def email_update():
-    phones = request.args['phones']
-    contact_name = request.args['contact_name']
-
-    try:
-        conn = sqlite3.connect('phones.db')
-        cur = conn.cursor()
-        sql = f'''
-        UPDATE phones
-        SET ContactName = '{contact_name}'
-        WHERE phones == '{phones}';
-        '''
-        cur.execute(sql)
-        conn.commit()
-    finally:
-        conn.close()
-
-    return 'Update Complete'
-
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000, debug=True)
