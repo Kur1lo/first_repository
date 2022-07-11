@@ -1,66 +1,9 @@
-from flask import Flask, request
-import sqlite3
 
-app = Flask(__name__)
+
+
 """
-
 TEST PULL REQUEST
-
 """
-
-@app.route('/phones/create/')
-def phones_create():
-    phones = request.args['phones']
-    contact_name = request.args['contact_name']
-
-    try:
-        conn = sqlite3.connect('phones.db')
-        cur = conn.cursor()
-        sql = f'''
-        INSERT INTO phones
-        VALUES ('{contact_name}', '{phones}');
-        '''
-        cur.execute(sql)
-        conn.commit()
-    finally:
-        conn.close()
-
-    return 'Done!'
-
-
-@app.route('/phones/read/')
-def email_read():
-    try:
-        conn = sqlite3.connect('phones.db')
-        cur = conn.cursor()
-        sql = f'''
-        SELECT * FROM phones;
-        '''
-        cur.execute(sql)
-        phones = cur.fetchall()
-
-    finally:
-        conn.close()
-
-    return str(phones)
-
-
-@app.route('/phones/delete/')
-def email_delete():
-    phones = request.args['phones']
-
-    try:
-        conn = sqlite3.connect('phones.db')
-        cur = conn.cursor()
-        sql = f'''
-        DELETE FROM phones WHERE phones == '{phones}';
-        '''
-        cur.execute(sql)
-        conn.commit()
-    finally:
-        conn.close()
-
-    return 'Delete '
 
 
 if __name__ == '__main__':
