@@ -56,7 +56,7 @@ def email_delete():
     finally:
         conn.close()
 
-    return 'Delete Complete'
+    return 'Delete '
 
 
 if __name__ == '__main__':
